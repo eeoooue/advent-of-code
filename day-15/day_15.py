@@ -6,13 +6,12 @@ from beaconchecker import BeaconChecker
 
 def load_all(filename):
 
-    lines = [line for line in FileReader.get_lines(15, filename) if len(line) > 1]
-
-    for line in lines:
-        [a, b] = InputParser.get_sensor_position(line)
-        [x, y] = InputParser.get_beacon_position(line)
-        sensors.append([a, b])
-        beacons.append([x, y])
+    for line in FileReader.get_lines(15, filename):
+        if len(line) > 1:
+            [a, b] = InputParser.get_sensor_position(line)
+            [x, y] = InputParser.get_beacon_position(line)
+            sensors.append([a, b])
+            beacons.append([x, y])
 
 def solve_part1(filename, target_line):
 
