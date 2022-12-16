@@ -19,7 +19,8 @@ class GridHolder:
         self.process_all()
         self.remove_appearances(self.sensors)
         self.remove_appearances(self.beacons)
-        print(f"{len(self.coated)} positions cannot contain a beacon")
+
+        return len(self.coated)
 
     def t_movement(self, sensor, beacon):
 

@@ -6,6 +6,7 @@ class BeaconChecker:
         self.sensors = sensors
         self.beacons = beacons
         self.ranges = []
+        self.solution = (-1, -1)
         self.get_ranges()
 
     def get_ranges(self):
@@ -37,7 +38,5 @@ class BeaconChecker:
             if score <= self.ranges[i]:
                 return self.escape_sensor(x, y, i)
 
-        print(f"solution @ x={x}, y={y}")
-        exit()
-
-        return -525300887039
+        self.solution = (x, y)
+        return x + 525_300_887_039

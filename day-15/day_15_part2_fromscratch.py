@@ -1,9 +1,7 @@
 
 from filereader import FileReader
 from inputparser import InputParser
-from gridholder_part2_v3 import GridHolder
 from beaconchecker import BeaconChecker
-
 
 def solve_part2(filename, limit):
 
@@ -24,24 +22,11 @@ def solve_part2(filename, limit):
         while x < limit:
             x = checker.next_overlap(x, y)
 
-    print(f"no solution found")
-
-
-def get_tuning(x, y):
-
-
+    (x, y) = checker.solution
     return (x * 4000000) + y
 
+# takes ~1-2 mins for me
+ans = solve_part2("input.txt", 4_000_001)
 
-#solve_part2("example.txt", 21)
-
-#solve_part2("input.txt", 4_000_001)
-
-
-
-# x=3172756, y=2767556
-
-ans = get_tuning(x=3172756, y=2767556)
-
-print(ans)
+print(f"part 2: the tuning frequency is {ans} Hz (12691026767556 for me)")
 
