@@ -29,6 +29,9 @@ class GridHolder:
         (x, y) = sensor
         points -= abs(y - self.target)
 
+        if points < 0:
+            return
+
         # we can spend {points} units moving left/right for this pair
         for j in range(x, x+points+1):
             self.coated.add(j)
