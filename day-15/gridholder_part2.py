@@ -5,7 +5,10 @@ class GridHolder:
         self.beacons = beacons
 
         self.target = target
-        self.coated = set([])
+        self.coated = [False] * 4_000_001
+
+        # delta traversal ???
+
         # we'll need to remove sensors & beacons from this set at the end
 
     def manhattan_dist(self, one, two):
@@ -17,9 +20,9 @@ class GridHolder:
     def solve(self):
 
         self.process_all()
-        self.remove_appearances(self.sensors)
-        self.remove_appearances(self.beacons)
-        print(f"{len(self.coated)} positions cannot contain a beacon")
+        #print(f"{len(self.coated)} positions cannot contain a beacon")
+
+        return sum(self.coated)
 
     def t_movement(self, sensor, beacon):
 
@@ -29,11 +32,17 @@ class GridHolder:
         points -= abs(y - self.target)
 
         # we can spend {points} units moving left/right for this pair
-        for j in range(x, x+points+1):
-            self.coated.add(j)
 
-        for j in range(x, x-(points+1), -1):
-            self.coated.add(j)
+        left_start = max(0, x)
+        left_limit = min(x+points, 4_000_000)
+
+        for j in range(left_start, left_limit+1):
+            self.coated[j] = True
+
+        right_start = min(x, 4_000_000)
+        right_limit = max(0, x-points)
+        for j in range(right_start, right_limit-1, -1):
+            self.coated[j] = True
 
     def process_all(self):
 
@@ -42,10 +51,3 @@ class GridHolder:
             sensor = self.sensors[i]
             beacon = self.beacons[i]
             self.t_movement(sensor, beacon)
-
-    def remove_appearances(self, arr):
-
-        for (x, y) in arr:
-            if y == self.target:
-                if x in self.coated:
-                    self.coated.remove(x)

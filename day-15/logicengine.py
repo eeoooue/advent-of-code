@@ -21,5 +21,5 @@ class LogicEngine:
             if y - manhat <= target:
                 return True
 
-        print(f"sensor @ ({x}, {y}) can be ignored")
+        #print(f"sensor @ ({x}, {y}) can be ignored")
         return False
