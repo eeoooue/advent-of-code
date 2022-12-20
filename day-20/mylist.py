@@ -6,7 +6,7 @@ class ListNode:
         
         self.val = x
         self.next = None
-        self.checking_order = i
+        self.sequence = i
     
 
 class MyList:
@@ -23,7 +23,7 @@ class MyList:
 
     def mix(self):
 
-        self.checked = 0
+        self.sequence = 0
 
         for i in range(self.n):
             (position, value) = self.get_next_node()
@@ -35,8 +35,17 @@ class MyList:
                 j = self.n - 1
 
             self.add_node(j, value)
-            self.checked += 1
+            self.sequence += 1
 
+    def get_next_node(self):
+
+        node = self.root
+        pos = 0
+        while node.sequence != self.sequence:
+            node = node.next
+            pos += 1
+
+        return (pos, node.val)
 
     def remove_current_node(self):
 
@@ -44,13 +53,12 @@ class MyList:
         dummy.next = self.root
 
         node = dummy
-        while node.next.checking_order != self.checked:
+        while node.next.sequence != self.sequence:
             node = node.next
 
         node.next = node.next.next
         self.root = dummy.next
 
-    
     def add_node(self, position, value):
 
         dummy = ListNode(0, -1)
@@ -60,24 +68,11 @@ class MyList:
         for i in range(position):
             node = node.next
         
-        new_node = ListNode(value, self.checked)
+        new_node = ListNode(value, self.sequence)
         new_node.next = node.next
 
         node.next = new_node
         self.root = dummy.next
-
-    
-    def get_next_node(self):
-
-        node = self.root
-
-        pos = 0
-        while node.checking_order != self.checked:
-            node = node.next
-            pos += 1
-
-        return (pos, node.val)
-
 
     def get_values(self):
 

@@ -7,7 +7,6 @@ def cycled_array(nums):
     i = nums.index(0)
     return nums[i:] + nums[:i]
     
-
 def solve(filename, decryption_key, repetitions):
 
     lines = [line for line in FileReader.get_lines(20, filename)]
@@ -25,7 +24,6 @@ def solve(filename, decryption_key, repetitions):
         total += queue[i % n]
 
     return total
-
 
 print(f"part 1 example = {solve('example.txt', 1, 1)} (should be 3)")
 print(f"part 1 ans = {solve('input.txt', 1, 1)} (1087 for me)")
