@@ -1,11 +1,5 @@
 
 
-
-from collections import deque
-
-
-
-
 class ListNode:
 
     def __init__(self, x, i) -> None:
@@ -14,8 +8,6 @@ class ListNode:
         self.next = None
         self.checking_order = i
     
-
-
 
 class MyList:
 
@@ -29,17 +21,11 @@ class MyList:
             node.next = ListNode(array[i], i)
             node = node.next
 
-        self.show_list()
-
-        for i in range(10):
-            self.mix()
-
     def mix(self):
 
         self.checked = 0
 
         for i in range(self.n):
-
             (position, value) = self.get_next_node()
             self.remove_current_node()
 
@@ -62,11 +48,9 @@ class MyList:
             node = node.next
 
         node.next = node.next.next
-
         self.root = dummy.next
 
-        
-
+    
     def add_node(self, position, value):
 
         dummy = ListNode(0, -1)
@@ -80,17 +64,9 @@ class MyList:
         new_node.next = node.next
 
         node.next = new_node
-
         self.root = dummy.next
+
     
-
-    def show_list(self):
-
-        nums = self.get_list_as_arr()
-
-        #print(f"list = {nums}")
-        
-        
     def get_next_node(self):
 
         node = self.root
@@ -100,23 +76,16 @@ class MyList:
             node = node.next
             pos += 1
 
-        #print(f"need to move node with val={node.val} (currently at pos {pos})")
-
         return (pos, node.val)
 
 
-    def get_list_as_arr(self):
-
+    def get_values(self):
 
         node = self.root
-
         nums = [node.val]
         while node.next:
             node = node.next
             nums.append(node.val)
 
         return nums
-
-
-
 

@@ -1,40 +1,34 @@
 
 from filereader import FileReader
-from list_class_v2 import MyList
+from mylist import MyList
 
-lines = [line for line in FileReader.get_lines(20, "input.txt")]
+def cycled_array(nums):
 
-array = [int(x) for x in lines]
+    i = nums.index(0)
+    return nums[i:] + nums[:i]
+    
 
+def solve(filename, decryption_key, repetitions):
 
+    lines = [line for line in FileReader.get_lines(20, filename)]
+    array = [(int(x) * decryption_key) for x in lines]
 
-list = MyList(array)
+    list = MyList(array)
+    for i in range(repetitions):
+        list.mix()
 
+    queue = cycled_array(list.get_values())
 
-nums = list.get_list_as_arr()
+    n = len(queue)
+    total = 0
+    for i in (1000, 2000, 3000):
+        total += queue[i % n]
 
-
-
-from collections import deque
-
-
-queue = deque(nums)
-
-while queue[0] != 0:
-    x = queue.popleft()
-    queue.append(x)
-
-n = len(queue)
-
-puzzle_vals = [1000,2000,3000]
-
-total = 0
-for i in puzzle_vals:
-    total += queue[i % n]
-    #print(f"{i}th val = {queue[i % n]}")
-
-print(f"part 1 ans = {total}")
+    return total
 
 
+print(f"part 1 example = {solve('example.txt', 1, 1)} (should be 3)")
+print(f"part 1 ans = {solve('input.txt', 1, 1)} (1087 for me)")
 
-
+print(f"part 2 example = {solve('example.txt', 811_589_153, 10)} (should be 1623178306)")
+print(f"part 2 ans = {solve('input.txt', 811_589_153, 10)} (13084440324666 for me)")
