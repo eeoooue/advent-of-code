@@ -8,9 +8,7 @@ def get_lines(filename):
 
 lines = get_lines("input.txt")
 
-pen = MonkeyPen()
-
-pen.interpret_array(lines)
+pen = MonkeyPen(lines)
 
 pen.solve_all()
 

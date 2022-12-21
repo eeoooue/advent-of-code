@@ -43,14 +43,13 @@ class MonkeyNode:
         self.two = arr[2]
 
     
-
-
 class MonkeyPen:
 
-    def __init__(self) -> None:
+    def __init__(self, arr) -> None:
     
         self.nodes = {}
         self.values = {}
+        self.interpret_array(arr)
 
     def overwrite_value(self, name, x):
 
