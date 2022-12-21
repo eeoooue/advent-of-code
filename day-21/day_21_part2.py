@@ -56,4 +56,5 @@ ans = []
 find_candidate(1)
 find_candidate(-1)
 
-print(ans)
+if ans:
+    print(f"part 2 = {ans[0]} (3469704905529 for me)")

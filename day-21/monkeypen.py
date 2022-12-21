@@ -125,11 +125,3 @@ class MonkeyPen:
         i = line.index(":")
         return MonkeyNode(line[:i], line[i+2:])
         
-
-
-
-
-
-
-
-
