@@ -1,7 +1,6 @@
 
 from filereader import FileReader
-
-from monkeynode import MonkeyPen
+from monkeypen import MonkeyPen
 
 def get_lines(filename):
 

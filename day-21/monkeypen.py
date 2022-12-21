@@ -1,7 +1,4 @@
 
-
-import collections
-
 class MonkeyNode:
 
     def __init__(self, name, string) -> None:

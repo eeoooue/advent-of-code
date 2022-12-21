@@ -1,7 +1,6 @@
 
 from filereader import FileReader
-
-from monkeynode_part2 import MonkeyPen
+from monkeypen import MonkeyPen
 
 def get_lines(filename):
 
@@ -9,7 +8,7 @@ def get_lines(filename):
 
 lines = get_lines("input.txt")
 
-def solve_attempt(value):
+def solve_a_minus_b(value):
 
     pen = MonkeyPen()
 
@@ -24,32 +23,88 @@ def solve_attempt(value):
     a = pen.values[node.one]
     b = pen.values[node.two]
 
-    print(f"({int(a-b)}) {int(abs(a-b))} (dist from value = {value}) || {a} needs to equal {b}")
-
     return int(a-b)
 
-state = ["0"] * 13
+def solve_b_minus_a(value):
 
-for i in range(13):
+    pen = MonkeyPen()
 
-    best_score = float("inf")
-    best_digit = "0"
+    pen.interpret_array(lines)
 
-    state_str = "".join(state)
-    front = state_str[:i]
-    back = state_str[i+1:]
+    pen.overwrite_value("humn", value)
+    pen.overwrite_operator("root", "=")
+    pen.solve_all()
 
-    for d in "0123456789":
+    node = pen.nodes["root"]
 
-        num = int(f"{front}{d}{back}")
-        score = solve_attempt(num)
+    a = pen.values[node.one]
+    b = pen.values[node.two]
 
-        if score >= 0 and score <= best_score:
-            best_score = score
-            best_digit = d
-    
-    state[i] = best_digit
+    return int(b-a)
 
-part2_ans = "".join(state)
 
-print(f"part 2 = {part2_ans} (3469704905529 for me)")
+
+def look_direction_1():
+
+    if ans:
+        return
+
+    state = ["0"] * 13
+
+    for i in range(13):
+
+        best_score = float("inf")
+        best_digit = "0"
+
+        front = "".join(state[:i])
+        back = "".join(state[i+1:])
+
+        for d in range(10):
+            num = int(f"{front}{d}{back}")
+            score = solve_a_minus_b(num)
+
+            if score >= 0 and score <= best_score:
+                best_score = score
+                best_digit = d
+        
+        state[i] = str(best_digit)
+
+    candidate = int("".join(state))
+    if solve_a_minus_b(candidate) == 0:
+        ans.append(candidate)
+
+def look_direction_2():
+
+    if ans:
+        return
+
+    state = ["0"] * 13
+
+    for i in range(13):
+
+        best_score = float("inf")
+        best_digit = "0"
+
+        front = "".join(state[:i])
+        back = "".join(state[i+1:])
+
+        for d in range(10):
+            num = int(f"{front}{d}{back}")
+            score = solve_b_minus_a(num)
+
+            if score >= 0 and score <= best_score:
+                best_score = score
+                best_digit = d
+        
+        state[i] = str(best_digit)
+
+    candidate = int("".join(state))
+    if solve_a_minus_b(candidate) == 0:
+        ans.append(candidate)
+
+ans = []
+
+look_direction_1()
+look_direction_2()
+
+print(ans)
