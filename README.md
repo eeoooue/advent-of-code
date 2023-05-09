@@ -2,16 +2,16 @@
 
 ## [2022](https://eeoooue.github.io/advent-of-code/2022/)
 
-- [x] Day 01 - Calorie Counting
-- [x] Day 02 - Rock Paper Scissors
-- [x] Day 03 - Rucksack Reorganization
-- [x] Day 04 - Camp Cleanup
-- [x] Day 05 - Supply Stacks
-- [x] Day 06 - Tuning Trouble
-- [x] Day 07 - No Space Left On Device
-- [x] Day 08 - Treetop Tree House
-- [x] Day 09 - Rope Bridge
-- [x] Day 10 - Cathode-Ray Tube
+- [x] [Day 01 - Calorie Counting](https://eeoooue.github.io/advent-of-code/2022/day01.html)
+- [x] [Day 02 - Rock Paper Scissors](https://eeoooue.github.io/advent-of-code/2022/day02.html)
+- [x] [Day 03 - Rucksack Reorganization](https://eeoooue.github.io/advent-of-code/2022/day03.html)
+- [x] [Day 04 - Camp Cleanup](https://eeoooue.github.io/advent-of-code/2022/day04.html)
+- [x] [Day 05 - Supply Stacks](https://eeoooue.github.io/advent-of-code/2022/day05.html)
+- [x] [Day 06 - Tuning Trouble](https://eeoooue.github.io/advent-of-code/2022/day06.html)
+- [x] [Day 07 - No Space Left On Device](https://eeoooue.github.io/advent-of-code/2022/day07.html)
+- [x] [Day 08 - Treetop Tree House](https://eeoooue.github.io/advent-of-code/2022/day08.html)
+- [x] [Day 09 - Rope Bridge](https://eeoooue.github.io/advent-of-code/2022/day09.html)
+- [x] [Day 10 - Cathode-Ray Tube](https://eeoooue.github.io/advent-of-code/2022/day10.html)
 - [x] Day 11 - Monkey in the Middle
 - [x] Day 12 - Hill Climbing Algorithm
 - [x] Day 13 - Distress Signal
