@@ -1,7 +1,7 @@
+# advent-of-code/2022/day04
 class FileReader:
     @staticmethod
     def get_lines(filename):
-
         lines = []
         with open(filename, "r") as file:
             for line in file:
@@ -12,18 +12,15 @@ class FileReader:
 
 class Interval:
     def __init__(self, i, j) -> None:
-
         self.start = i
         self.end = j
 
     def contains(self, other):
-
         if self.start <= other.start:
             if self.end >= other.end:
                 return True
 
     def overlaps(self, other):
-
         if self.start <= other.start:
             if self.end >= other.start:
                 return True
@@ -31,11 +28,9 @@ class Interval:
 
 class Solution:
     def __init__(self, lines) -> None:
-
         self.lines = lines
 
     def interpret_range(self, line):
-
         i = line.index("-")
         start = int(line[:i])
         end = int(line[i + 1 :])
@@ -43,7 +38,6 @@ class Solution:
         return Interval(start, end)
 
     def unpack_intervals(self, line):
-
         result = []
         for range in line.split(","):
             interval = self.interpret_range(range)
@@ -52,7 +46,6 @@ class Solution:
         return result
 
     def count_containments(self):
-
         count = 0
         for line in self.lines:
             (a, b) = self.unpack_intervals(line)
@@ -62,7 +55,6 @@ class Solution:
         return count
 
     def count_overlaps(self):
-
         count = 0
         for line in self.lines:
             (a, b) = self.unpack_intervals(line)

@@ -1,7 +1,7 @@
+# advent-of-code/2022/day03
 class FileReader:
     @staticmethod
     def get_lines(filename):
-
         lines = []
         with open(filename, "r") as file:
             for line in file:
@@ -12,20 +12,17 @@ class FileReader:
 
 class Solution:
     def __init__(self, lines) -> None:
-
         self.lines = lines
         self.points = {}
         self.build_scoring_system()
 
     def build_scoring_system(self):
-
         ABC = "_abcdefghijklmnopqrstuvwxyz"
         for i, x in enumerate(ABC):
             self.points[x] = i
             self.points[x.upper()] = i + 26
 
     def split_halfway(self, s):
-
         i = len(s) // 2
         a = s[:i]
         b = s[i:]
@@ -33,7 +30,6 @@ class Solution:
         return [a, b]
 
     def get_intersection(self, shared, rucksack):
-
         intersection = set([])
         for item in rucksack:
             if item in shared:
@@ -42,7 +38,6 @@ class Solution:
         return intersection
 
     def find_common_element(self, group):
-
         shared = set(group[0])
         for rucksack in group:
             shared = self.get_intersection(shared, rucksack)
@@ -51,7 +46,6 @@ class Solution:
             return item
 
     def sum_rucksack_priorities(self):
-
         total = 0
         for line in self.lines:
             compartments = self.split_halfway(line)
@@ -61,7 +55,6 @@ class Solution:
         return total
 
     def sum_badge_values(self):
-
         n = len(self.lines)
 
         total = 0

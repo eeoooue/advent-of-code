@@ -1,7 +1,7 @@
+# advent-of-code/2022/day06
 class FileReader:
     @staticmethod
     def get_lines(filename):
-
         lines = []
         with open(filename, "r") as file:
             for line in file:
@@ -12,7 +12,6 @@ class FileReader:
 
 class Solution:
     def __init__(self, datastream, marker_length) -> None:
-
         self.stream = datastream
         self.m = marker_length
         self.n = len(datastream)
@@ -20,36 +19,30 @@ class Solution:
         self.table = {x: 0 for x in "abcdefghijklmnopqrstuvwxyz"}
         self.active = set([])
         self.chars_read = 0
-        
-    def initialize_window(self):
 
+    def initialize_window(self):
         for i in range(self.m):
             self.read_character(self.stream[i])
 
     def slide_window(self, i):
-
         self.drop_character(self.stream[i])
         self.read_character(self.stream[i + self.m])
 
     def marker_complete(self):
-
         return len(self.active) == self.m
 
     def drop_character(self, x):
-
         self.table[x] -= 1
         if self.table[x] == 0:
             self.active.remove(x)
 
     def read_character(self, x):
-
         if self.table[x] == 0:
             self.active.add(x)
         self.table[x] += 1
         self.chars_read += 1
 
     def solve(self):
-
         self.initialize_window()
         if self.marker_complete():
             return self.chars_read

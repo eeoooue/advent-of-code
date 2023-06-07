@@ -1,11 +1,10 @@
-
+# advent-of-code/2022/day02
 from enum import Enum
 
-class FileReader:
 
+class FileReader:
     @staticmethod
     def get_lines(filename):
-
         lines = []
         with open(filename, "r") as file:
             for line in file:
@@ -15,17 +14,14 @@ class FileReader:
 
 
 class MoveOption(Enum):
-
     Rock = 0
     Paper = 1
     Scissors = 2
 
 
 class RockPaperScissors:
-
     @staticmethod
     def interpret_round(my_move, their_move):
-            
         score = RockPaperScissors.outcome_points(my_move, their_move)
         score += my_move.value + 1
 
@@ -33,7 +29,6 @@ class RockPaperScissors:
 
     @staticmethod
     def outcome_points(a: MoveOption, b: MoveOption):
-
         offset = (b.value - a.value) % 3
 
         match offset:
@@ -46,9 +41,7 @@ class RockPaperScissors:
 
 
 class Solution:
-
     def __init__(self, lines) -> None:
-        
         self.rounds = lines
 
         self.moves = {
@@ -61,7 +54,6 @@ class Solution:
         }
 
     def get_total_from_strategy(self, puzzle_part):
-
         total = 0
         for line in self.rounds:
             (their_move, my_move) = self.unpack_moves(line, puzzle_part)
@@ -70,10 +62,9 @@ class Solution:
         return total
 
     def unpack_moves(self, line, part):
-
         (a, b) = line.split(" ")
         their_move = self.moves[a]
-        
+
         if part == 1:
             my_move = self.moves[b]
         else:
@@ -82,7 +73,6 @@ class Solution:
         return (their_move, my_move)
 
     def find_suggested_move(self, their_move: MoveOption, instruction):
-
         winning_value = (their_move.value - 2) % 3
         losing_value = (their_move.value - 1) % 3
 

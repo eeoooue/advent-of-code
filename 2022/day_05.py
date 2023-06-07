@@ -1,7 +1,7 @@
+# advent-of-code/2022/day05
 class FileReader:
     @staticmethod
     def get_lines(filename):
-
         lines = []
         with open(filename, "r") as file:
             for line in file:
@@ -12,14 +12,12 @@ class FileReader:
 
 class InputParser:
     def __init__(self, lines) -> None:
-
         self.supplies = []
         self.commands = []
         self.config = []
         self.process_input(lines)
 
     def process_input(self, lines):
-
         for line in lines:
             if line[:4] == "move":
                 self.commands.append(line)
@@ -29,7 +27,6 @@ class InputParser:
         self.build_config()
 
     def add_supplies(self, line):
-
         layer = []
         for i in range(1, len(line), 4):
             layer.append(line[i])
@@ -38,14 +35,12 @@ class InputParser:
             self.supplies.append(layer)
 
     def build_config(self):
-
         n = len(self.supplies[0])
         for i in range(n):
             layer = self.get_layer(i)
             self.config.append(layer)
 
     def get_layer(self, j):
-
         m = len(self.supplies)
         k = int(self.supplies[-1][j])
 
@@ -59,21 +54,17 @@ class InputParser:
 
 class SupplyStacks:
     def __init__(self, config) -> None:
-
         self.stacks = {}
-        for (k, arr) in config:
+        for k, arr in config:
             self.stacks[k] = list(arr)
 
     def push_item(self, i, x):
-
         self.stacks[i].append(x)
 
     def pop_item(self, i):
-
         return self.stacks[i].pop()
 
     def cream_top(self):
-
         build = ""
         for k in self.stacks:
             if self.stacks[k]:
@@ -84,7 +75,6 @@ class SupplyStacks:
 
 class Command:
     def __init__(self, origin, destination, crates) -> None:
-
         self.origin = origin
         self.destination = destination
         self.crates = crates
@@ -92,23 +82,19 @@ class Command:
 
 class CrateMover:
     def __init__(self, supplies: SupplyStacks, model_number) -> None:
-
         self.supplies = supplies
         self.model = model_number
         self.holding = []
 
     def load_from(self, i):
-
         item = self.supplies.pop_item(i)
         self.holding.append(item)
 
     def unload_to(self, i):
-
         item = self.holding.pop()
         self.supplies.push_item(i, item)
 
     def move_crates(self, origin, destination, count):
-
         for i in range(count):
             self.load_from(origin)
 
@@ -116,7 +102,6 @@ class CrateMover:
             self.unload_to(destination)
 
     def operate(self, command: Command):
-
         match self.model:
             case 9000:
                 for i in range(command.crates):
@@ -127,12 +112,10 @@ class CrateMover:
 
 class Solution:
     def __init__(self, config, lines):
-
         self.config = config
         self.lines = lines
 
     def interpret_command(self, line):
-
         command = line.split(" ")
         crates_to_move = int(command[1])
         origin = int(command[3])
@@ -141,7 +124,6 @@ class Solution:
         return Command(origin, destination, crates_to_move)
 
     def rearrange_supplies(self, crane_model):
-
         supplies = SupplyStacks(self.config)
         crane = CrateMover(supplies, crane_model)
 

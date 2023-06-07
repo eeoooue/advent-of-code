@@ -2,7 +2,6 @@
 class FileReader:
     @staticmethod
     def get_lines(filename):
-
         lines = []
         with open(filename, "r") as file:
             for line in file:
@@ -13,14 +12,12 @@ class FileReader:
 
 class Solution:
     def __init__(self, lines) -> None:
-
         self.tree_grid = [[int(x) for x in line] for line in lines]
 
         self.m = len(self.tree_grid)
         self.n = len(self.tree_grid[0])
 
     def scrape_left(self, i, j):
-
         best = -1
         while j + 1 < self.n:
             j += 1
@@ -29,7 +26,6 @@ class Solution:
         return best
 
     def scrape_right(self, i, j):
-
         best = -1
         while j - 1 >= 0:
             j -= 1
@@ -38,7 +34,6 @@ class Solution:
         return best
 
     def scrape_up(self, i, j):
-
         best = -1
         while i - 1 >= 0:
             i -= 1
@@ -47,7 +42,6 @@ class Solution:
         return best
 
     def scrape_down(self, i, j):
-
         best = -1
         while i + 1 < self.m:
             i += 1
@@ -56,7 +50,6 @@ class Solution:
         return best
 
     def is_visible(self, i, j):
-
         height = self.tree_grid[i][j]
 
         vals = []
@@ -71,7 +64,6 @@ class Solution:
         return False
 
     def count_visible_trees(self):
-
         count = 0
         for i in range(self.m):
             for j in range(self.n):
@@ -81,7 +73,6 @@ class Solution:
         return count
 
     def look_left(self, i, j):
-
         height = self.tree_grid[i][j]
         score = 0
         while j + 1 < self.n:
@@ -93,7 +84,6 @@ class Solution:
         return score
 
     def look_right(self, i, j):
-
         height = self.tree_grid[i][j]
         score = 0
         while j - 1 >= 0:
@@ -105,7 +95,6 @@ class Solution:
         return score
 
     def look_up(self, i, j):
-
         height = self.tree_grid[i][j]
         score = 0
         while i - 1 >= 0:
@@ -117,7 +106,6 @@ class Solution:
         return score
 
     def look_down(self, i, j):
-
         height = self.tree_grid[i][j]
         score = 0
         while i + 1 < self.m:
@@ -129,7 +117,6 @@ class Solution:
         return score
 
     def get_score(self, i, j):
-
         score = 1
         score *= self.look_left(i, j)
         score *= self.look_right(i, j)
@@ -139,7 +126,6 @@ class Solution:
         return score
 
     def get_best_tree_score(self):
-
         best = 0
         for i in range(self.m):
             for j in range(self.n):

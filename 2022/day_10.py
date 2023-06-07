@@ -2,7 +2,6 @@
 class FileReader:
     @staticmethod
     def get_lines(filename):
-
         lines = []
         with open(filename, "r") as file:
             for line in file:
@@ -13,7 +12,6 @@ class FileReader:
 
 class Simulation:
     def __init__(self) -> None:
-
         self.cycles = []
         self.t = 0
         self.value = 1
@@ -21,7 +19,6 @@ class Simulation:
         self.active = [0 for i in range(240)]
 
     def print_screen(self):
-
         for i in range(6):
             line = []
             for j in range(40):
@@ -29,7 +26,6 @@ class Simulation:
             print("".join(line))
 
     def update_sprite(self):
-
         self.active = [0 for i in range(240)]
 
         x_pos = self.value
@@ -43,7 +39,6 @@ class Simulation:
             self.active[(i * 40) + c] = 1
 
     def cycle(self):
-
         self.cycles.append(self.value)
         self.update_sprite()
         self.t += 1
@@ -52,12 +47,10 @@ class Simulation:
             self.drawing[self.t - 1] = "#"
 
     def spend_cycles(self, n):
-
         for i in range(n):
             self.cycle()
 
     def interpret_line(self, line):
-
         if line[0] == "n":
             self.spend_cycles(1)
 
@@ -71,7 +64,6 @@ class Simulation:
         print("...")
 
     def serve_query(self, arr):
-
         response = []
         for i in arr:
             response.append(i * self.cycles[i - 1])
